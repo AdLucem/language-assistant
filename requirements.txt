@@ -1,3 +1,5 @@
 gensim
 spacy
 wikipedia
+python-twitter
+Whoosh
