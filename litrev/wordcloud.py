@@ -49,6 +49,24 @@ def show_level(nodes, level):
             show_level(subnodes, level - 1)
 
 
+def get_all_files(nodes, level):
+
+    files = []
+    if level == 0:
+        for node in nodes:
+            files.extend(node.docs)
+    else:
+        subnodes = []
+        for node in nodes:
+            subnodes.extend(node.subdirs)
+        if subnodes == []:
+            print("Tree depth exceeded.")
+        else:
+            show_level(subnodes, level - 1)
+
+    return files
+
+
 def mk_dir_tree(fpath):
 
     subdirs = [join(fpath, d) for d in listdir(fpath)
@@ -70,4 +88,10 @@ def mk_dir_tree(fpath):
 
 
 root = mk_dir_tree(FILEPATH)
-show_level([root], int(sys.argv[1]))
+files = get_all_files([root], int(sys.argv[1]))
+
+print("yes")
+print(files)
+for file in files:
+    print(file.name)
+    print(file.summarize())

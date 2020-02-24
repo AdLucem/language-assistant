@@ -1,3 +1,4 @@
-PyPDF2
+pypandoc
 spacy
 gensim
+nltk
