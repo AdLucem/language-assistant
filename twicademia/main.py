@@ -1,5 +1,9 @@
 import twitter
 import json
+import argparse
+import scraping_functions as sc
+from filters import user_text, text
+
 
 CONFIG_FILE = "config.json"
 
@@ -11,9 +15,9 @@ api = twitter.Api(consumer_key=keys["consumer_key"],
                   access_token_key=keys["access_token"],
                   access_token_secret=keys["access_token_secret"])
 
-content = api.GetHomeTimeline(count=200, exclude_replies=True, contributor_details=True)
+tweets = text(sc.get_search(api, "coronavirus"))
 
-for tweet in content:
-	print(tweet.user.name)
-	print(tweet.text)
+for tweetails in tweets:
+	for detail in tweetails:
+		print(detail)
 	print("---------------------------------------------")
