@@ -1,0 +1,4 @@
+pypandoc
+spacy
+gensim
+nltk
